@@ -14,8 +14,8 @@ class Parse:
         self.text = self.res.text
         self.lines = self.text.split("\n")
     
-    def update(self, url: str = self.url):
-        self.url = url
+    def update(self, url: str = None):
+        if url: self.url = url
         self.res = requests.get(self.url)
         self.text = self.res.text
         self.lines = self.text.split("\n")
