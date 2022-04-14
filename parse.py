@@ -50,13 +50,18 @@ class Parse:
         return out
 
     def find_elements(self, lines: list, element: str, spaces: int) -> list:
+        if lines == []: return
+
+        if f"</{element}>" in lines[0]:
+            return lines[0].split(">")[1].split("<")[0]
+        
         for i in range(len(lines)):
             _spaces = self.get_spaces(lines[i])
 
             if f"</{element}>" in lines[i] and spaces == _spaces:
                 return lines[1:i]
 
-    def find_element(self, element: str) -> list:
+    def find_by_element_name(self, element: str) -> list:
         elements = []
         
         for i in range(len(self.lines)):
